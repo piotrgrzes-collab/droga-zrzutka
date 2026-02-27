@@ -1,571 +1,96 @@
 <!DOCTYPE html>
-<html lang="pl" data-color-scheme="light">
+<html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Naprawa drogi – działki 2/17 i 2354</title>
-  <style>
-    :root {
-      --color-cream-50: rgba(252, 252, 249, 1);
-      --color-cream-100: rgba(255, 255, 253, 1);
-      --color-slate-900: rgba(19, 52, 59, 1);
-      --color-slate-500: rgba(98, 108, 113, 1);
-      --color-brown-600-rgb: 94, 82, 64;
-      --color-teal-500-rgb: 33, 128, 141;
-      --color-teal-600: rgba(29, 116, 128, 1);
-      --color-teal-700: rgba(26, 104, 115, 1);
-      --color-border: rgba(94, 82, 64, 0.2);
-      --color-background: var(--color-cream-50);
-      --color-surface: var(--color-cream-100);
-      --color-text: var(--color-slate-900);
-      --color-text-secondary: var(--color-slate-500);
-      --color-primary: rgba(33, 128, 141, 1);
-      --color-primary-hover: var(--color-teal-600);
-      --color-primary-active: var(--color-teal-700);
-      --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system,
-        BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-size-base: 14px;
-      --font-size-lg: 16px;
-      --font-size-3xl: 24px;
-      --radius-lg: 12px;
-      --space-4: 4px;
-      --space-8: 8px;
-      --space-16: 16px;
-      --space-24: 24px;
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
-    }
-
-    @font-face {
-      font-family: "FKGroteskNeue";
-      src: url("https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2")
-        format("woff2");
-    }
-
-    html {
-      font-size: var(--font-size-base);
-      font-family: var(--font-family-base);
-      line-height: 1.5;
-      color: var(--color-text);
-      background-color: var(--color-background);
-      -webkit-font-smoothing: antialiased;
-      box-sizing: border-box;
-    }
-
-    *, *::before, *::after {
-      box-sizing: inherit;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--color-background);
-      color: var(--color-text);
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: var(--space-24) var(--space-16);
-    }
-
-    h1 {
-      font-size: var(--font-size-3xl);
-      margin: 0 0 var(--space-16) 0;
-    }
-
-    h2 {
-      font-size: var(--font-size-lg);
-      margin: var(--space-24) 0 var(--space-8) 0;
-    }
-
-    p {
-      margin: 0 0 var(--space-8) 0;
-      color: var(--color-text-secondary);
-    }
-
-    .card {
-      background-color: var(--color-surface);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--color-border);
-      box-shadow: var(--shadow-sm);
-      padding: var(--space-16);
-      margin-bottom: var(--space-24);
-    }
-
-    .toggle-buttons {
-      display: flex;
-      gap: var(--space-8);
-      margin-bottom: var(--space-8);
-      flex-wrap: wrap;
-    }
-
-    .btn-toggle {
-      padding: var(--space-8) var(--space-16);
-      border-radius: 999px;
-      border: 1px solid var(--color-border);
-      background-color: rgba(94, 82, 64, 0.04);
-      cursor: pointer;
-      font-size: 13px;
-    }
-
-    .btn-toggle.active {
-      background-color: var(--color-primary);
-      color: #fff;
-      border-color: var(--color-primary);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: var(--space-8);
-      font-size: 13px;
-    }
-
-    th, td {
-      padding: var(--space-8);
-      border-bottom: 1px solid var(--color-border);
-      text-align: left;
-      vertical-align: top;
-    }
-
-    th {
-      background-color: rgba(94, 82, 64, 0.04);
-    }
-
-    .kw-tag {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--color-border);
-      font-size: 12px;
-      background-color: rgba(94, 82, 64, 0.04);
-      margin-right: var(--space-8);
-    }
-
-    .note {
-      font-size: 12px;
-      color: var(--color-text-secondary);
-      margin-top: var(--space-4);
-    }
-
-    .row-kolas {
-      background-color: rgba(33, 128, 141, 0.06);
-    }
-
-    .row-zaleglosc {
-      background-color: rgba(168, 75, 47, 0.05);
-    }
-
-    .table-wrapper {
-      display: none;
-    }
-
-    .table-wrapper.active {
-      display: block;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Rozliczenie składek na naprawę drogi</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h2 { margin-top: 40px; }
+table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
+th, td { border: 1px solid #000; padding: 6px; text-align: center; }
+th { background-color: #f2f2f2; }
+.left { text-align: left; }
+.status-ok { color: green; font-weight: bold; }
+.status-brak { color: red; font-weight: bold; }
+.status-czesciowe { color: orange; font-weight: bold; }
+</style>
 </head>
 <body>
-  <main class="container">
-    <header class="card">
-      <h1>Naprawa drogi – działki 2/17 i 2354</h1>
-      <p>
-        Zestawienie wszystkich gospodarstw biorących udział w sąsiedzkich zrzutkach na naprawę drogi
-        prowadzącej przez działki 2/17 (KW PO1F/00041322/6) i 2354 (KW PO1F/00047935/8),
-        wraz z zasadami naliczania składki na rok 2026 i skrótowym statusem wpłat.
-      </p>
-    </header>
 
-    <section class="card">
-      <h2>Zasady udziału w kosztach (2026)</h2>
-      <p>
-        Zrzutka liczona jest <strong>od gospodarstwa</strong>, a nie od wielkości udziału w księdze wieczystej.
-        Małżeństwo wpisane wspólnie w KW traktowane jest jako jedno gospodarstwo, a osoby wpisane samodzielnie –
-        jako osobne gospodarstwa.
-      </p>
-      <ul>
-        <li>Każde gospodarstwo będące współwłaścicielem działki <strong>2354</strong> płaci pełną składkę
-          <strong>400&nbsp;zł</strong> (korzysta z całej drogi: 2/17 + 2354).</li>
-        <li>Każde gospodarstwo będące współwłaścicielem wyłącznie działki <strong>2/17</strong>
-          (i niebędące współwłaścicielem 2354) płaci <strong>200&nbsp;zł</strong> (połowa składki).</li>
-      </ul>
-    </section>
+<h2>Księga wieczysta – 2/17</h2>
+<p>PO1F/00041322/6 (Sąd Rejonowy we Wrześni)</p>
 
-    <section class="card">
-      <h2>Zestawienie gospodarstw</h2>
-      <p>Możesz przełączać widok między współwłaścicielami działki 2354 oraz współwłaścicielami wyłącznie działki 2/17.</p>
-      <div class="toggle-buttons">
-        <button class="btn-toggle active" data-target="tbl-2354">Współwłaściciele 2354</button>
-        <button class="btn-toggle" data-target="tbl-217">Współwłaściciele tylko 2/17</button>
-      </div>
+<table>
+<tr>
+<th>Lp.</th>
+<th class="left">Współwłaściciel</th>
+<th>Składka 2022</th>
+<th>Składka 2023</th>
+<th>Składka 2025</th>
+<th>Razem wpłacono</th>
+<th>Zaległość</th>
+<th>Status</th>
+</tr>
 
-      <!-- TABELA 2354 -->
-      <div class="table-wrapper active" id="tbl-2354">
-        <p>
-          Współwłaściciele działki 2354 według KW PO1F/00047935/8 (wszyscy są jednocześnie współwłaścicielami 2/17
-          i korzystają z całej drogi).
-        </p>
-        <div class="kw-tag">KW 2/17: PO1F/00041322/6</div>
-        <div class="kw-tag">KW 2354: PO1F/00047935/8</div>
-        <table>
-          <thead>
-            <tr>
-              <th>Gospodarstwo (właściciele z KW 2354)</th>
-              <th>Zrzutka M. Szeszuła<br />(MS)</th>
-              <th>Kruszywo 2022</th>
-              <th>Kruszywo 2023</th>
-              <th>Asfalt 2025</th>
-              <th>Składka 2026</th>
-              <th>Suma wpłat (MS+22+23+25)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="row-kolas">
-              <td><strong>Wiesław i Aneta Kolas</strong></td>
-              <td>0&nbsp;zł</td>
-              <td>500&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td>800&nbsp;zł</td>
-              <td></td>
-              <td><strong>1300&nbsp;zł</strong></td>
-            </tr>
-            <tr>
-              <td>Martyna Matylda i Krzysztof Plewińscy</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Monika Karolina i Łukasz Jan Wójt</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Agnieszka Biskupska Bigos i Karol Bigos</td>
-              <td>1000&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2100&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Sylwia Anna i Maciej Szeszuła</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Jakub Jaszczak</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Krystyna Katarzyna i Hubert Stachowiak</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Małgorzata Karolina i Piotr Jan Grześ</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Joanna Kulińska i Adrian Grzegorz Jendrzejewski</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Joanna Marlena Borzuta</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Mirosława Joanna i Jan Wiesław Stępniak oraz Sławomir Stępniak (jedno gospodarstwo)</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr class="row-zaleglosc">
-              <td>Natalia i Andrzej Arkadiusz Jankoś</td>
-              <td>0&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>150&nbsp;zł</td>
-              <td></td>
-              <td>650&nbsp;zł (zaległość 450&nbsp;zł względem 600&nbsp;zł w 2025)</td>
-            </tr>
-            <tr>
-              <td>Krzysztof Janiszewski</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Mateusz i Jagoda Maria Kołtoniak</td>
-              <td>0&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>1100&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Kinga Aleksandra Böse i Olivier Józef Jeske</td>
-              <td>2500&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td></td>
-              <td>2500&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Sławomir i Karolina Polcyn</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Pamela Witczak Kryślak i Remigiusz Paweł Witczak</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Robert Maciej i Magdalena Barbara Salomon</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr>
-              <td>Katarzyna i Sławomir Eugeniusz Witkowscy</td>
-              <td>1360&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>250&nbsp;zł</td>
-              <td>600&nbsp;zł</td>
-              <td></td>
-              <td>2460&nbsp;zł</td>
-            </tr>
-            <tr class="row-zaleglosc">
-              <td>Jakub Tomasz Bartkowiak</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td></td>
-              <td>0&nbsp;zł (nowe gospodarstwo, pełna zaległość historyczna)</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+<tr><td>1</td><td class="left">Arkadiusz Cieluch, Izabela Cieluch</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>2</td><td class="left">Beata Szczepaniak, Grzegorz Szczepaniak</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>3</td><td class="left">Damian Skąpski</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>4</td><td class="left">Szczepan Stawiccy, Katarzyna Stawiccy</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>5</td><td class="left">Michał Urbaniak</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>6</td><td class="left">Marcin Rybarczyk, Katarzyna Rybarczyk</td><td>0 zł</td><td>0 zł</td><td>0 zł</td><td>0 zł</td><td>600 zł</td><td class="status-brak">brak wpłat – 600 zł</td></tr>
+<tr><td>7</td><td class="left">Krzysztof Radzimirski, Halina Radzimirski</td><td>0 zł</td><td>0 zł</td><td>0 zł</td><td>0 zł</td><td>600 zł</td><td class="status-brak">brak wpłat – 600 zł</td></tr>
 
-      <!-- TABELA TYLKO 2/17 -->
-      <div class="table-wrapper" id="tbl-217">
-        <p>
-          Współwłaściciele działki 2/17 według KW PO1F/00041322/6, którzy <strong>nie</strong> są współwłaścicielami
-          działki 2354. Dla nich historyczna pełna składka (kruszywo 2022, kruszywo 2023 i asfalt 2025) wynosi
-          1100&nbsp;zł.
-        </p>
-        <div class="kw-tag">KW 2/17: PO1F/00041322/6</div>
-        <table>
-          <thead>
-            <tr>
-              <th>Gospodarstwo (właściciele tylko 2/17)</th>
-              <th>Zrzutka M. Szeszuła<br />(MS)</th>
-              <th>Kruszywo 2022</th>
-              <th>Kruszywo 2023</th>
-              <th>Asfalt 2025</th>
-              <th>Składka 2026</th>
-              <th>Suma wpłat</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Arkadiusz i Izabela Maria Cieluch</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><!-- do uzupełnienia wg rozliczeń --></td>
-            </tr>
-            <tr>
-              <td>Beata Julia i Grzegorz Konrad Szczepaniak</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Damian Skąpski</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Szczepan Jan i Katarzyna Joanna Stawiccy</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Michał Urbaniak</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>Joanna Marlena Deręgowska</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr class="row-zaleglosc">
-              <td>Marcin i Katarzyna Małgorzata Rybarczyk</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td></td>
-              <td>0&nbsp;zł (nowi – dotąd brak udziału w zrzutkach, pełna zaległość 1100&nbsp;zł)</td>
-            </tr>
-            <tr class="row-zaleglosc">
-              <td>Krzysztof Zenon i Halina Radzimirscy</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td></td>
-              <td>0&nbsp;zł (nowi – dotąd brak udziału w zrzutkach, pełna zaległość 1100&nbsp;zł)</td>
-            </tr>
-            <tr class="row-zaleglosc">
-              <td>Nowi współwłaściciele po bliźniaku DAGABUD / Gronowskich</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td>0&nbsp;zł</td>
-              <td></td>
-              <td>0&nbsp;zł (nowi – dotąd brak udziału w zrzutkach, pełna zaległość 1100&nbsp;zł)</td>
-            </tr>
-          </tbody>
-        </table>
-        <p class="note">
-          Dokładną listę gospodarstw tylko z 2/17 można sprawdzić w KW PO1F/00041322/6 jako różnicę między
-          wszystkimi współwłaścicielami 2/17 a listą gospodarstw z tabeli dla 2354.
-        </p>
-      </div>
-    </section>
+</table>
 
-    <section class="card">
-      <h2>Podsumowanie zrzutek</h2>
-      <p>
-        Do tej pory przeprowadzono cztery główne zrzutki:
-      </p>
-      <ul>
-        <li>
-          <strong>Zrzutka M. Szeszuły (MS, tylko działka 2354)</strong> – korytowanie i zasypanie warstwami gruzu
-          odcinka drogi na działce 2354, wykonane przez firmę Otto.
-        </li>
-        <li>
-          <strong>Kruszywo 2022</strong> – po 250&nbsp;zł od gospodarstwa na kruszywo do naprawy dziur w drodze;
-          Kolas wpłacił w tej zrzutce 500&nbsp;zł.
-        </li>
-        <li>
-          <strong>Kruszywo 2023</strong> – po 250&nbsp;zł od gospodarstwa na kolejny serwis kruszywem;
-          Kolas w tym roku nie wpłacał, pozostali płacili analogicznie do 2022 r.
-        </li>
-        <li>
-          <strong>Asfalt 2025</strong> – po 600&nbsp;zł od gospodarstwa na wykonanie asfaltu na drodze;
-          Kolas wpłacił 800&nbsp;zł, a gospodarstwo Jankosiów 150&nbsp;zł (zaległość 450&nbsp;zł), pozostali 600&nbsp;zł.
-        </li>
-      </ul>
-      <p>
-        Według arkusza rozliczeniowego łączna suma zebranych środków oraz poniesionych kosztów daje saldo,
-        przy którym na dzień sporządzenia zestawienia <strong>pozostało 4210&nbsp;zł</strong> środków
-        z dotychczasowych zrzutek.
-      </p>
-    </section>
-  </main>
 
-  <script>
-    const buttons = document.querySelectorAll('.btn-toggle');
-    const tables = document.querySelectorAll('.table-wrapper');
+<h2>Księga wieczysta – 2354</h2>
+<p>PO1F/00047935/8 (Sąd Rejonowy we Wrześni)</p>
 
-    buttons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('data-target');
+<table>
+<tr>
+<th>Lp.</th>
+<th class="left">Współwłaściciel</th>
+<th>Składka 2022</th>
+<th>Składka 2023</th>
+<th>Składka 2025</th>
+<th>Razem wpłacono</th>
+<th>Zaległość</th>
+<th>Status</th>
+</tr>
 
-        buttons.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
+<tr><td>1</td><td class="left">Wiesław Kolas, Aneta Kolas</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>2</td><td class="left">Martyna Plewińska, Krzysztof Plewiński</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>3</td><td class="left">Monika Wójt, Łukasz Wójt</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>4</td><td class="left">Agnieszka Biskupska Bigos, Karol Bigos</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>5</td><td class="left">Sylwia Szeszuła, Maciej Szeszuła</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>6</td><td class="left">Jakub Jaszczak</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>7</td><td class="left">Krystyna Stachowiak, Hubert Stachowiak</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>8</td><td class="left">Małgorzata Grześ, Piotr Grześ</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>10</td><td class="left">Adrian Jendrzejewski, Joanna Kulińska</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>11</td><td class="left">Joanna Borzuta</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>12</td><td class="left">Mirosława Stępniak, Jan Stępniak, Sławomir Stępniak</td><td>0 zł</td><td>0 zł</td><td>0 zł</td><td>0 zł</td><td>1 100 zł</td><td class="status-brak">brak wpłat</td></tr>
+<tr><td>13</td><td class="left">Natalia Jankoś, Andrzej Jankoś</td><td>250 zł</td><td>250 zł</td><td>150 zł</td><td>650 zł</td><td>450 zł</td><td class="status-czesciowe">zaległość 450 zł (2025)</td></tr>
+<tr><td>14</td><td class="left">Krzysztof Janiszewski</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>15</td><td class="left">Mateusz Kołtoniak, Jagoda Kołtoniak</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>16</td><td class="left">Kinga Böse, Olivier Jeske</td><td>0 zł</td><td>0 zł</td><td>2500 zł</td><td>2500 zł</td><td>0 zł</td><td class="status-ok">wpłata jednorazowa 2025</td></tr>
+<tr><td>17</td><td class="left">Sławomir Polcyn, Karolina Polcyn</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>18</td><td class="left">Pamela Witczak Kryślak, Remigiusz Witczak</td><td>250 zł</td><td>250 zł</td><td>600 zł</td><td>1 100 zł</td><td>0 zł</td><td class="status-ok">wpłacono w całości</td></tr>
+<tr><td>19</td><td class="left">Jakub Bartkowiak</td><td>0 zł</td><td>0 zł</td><td>0 zł</td><td>0 zł</td><td>1 100 zł</td><td class="status-brak">brak wpłat</td></tr>
+<tr><td>20</td><td class="left">Robert Salomon, Magdalena Salomon</td><td>0 zł</td><td>0 zł</td><td>0 zł</td><td>0 zł</td><td>1 100 zł</td><td class="status-brak">brak wpłat</td></tr>
+<tr><td>21</td><td class="left">Katarzyna Witkowska, Sławomir Witkowski</td><td>0 zł</td><td>0 zł</td><td>0 zł</td><td>0 zł</td><td>1 100 zł</td><td class="status-brak">brak wpłat</td></tr>
 
-        tables.forEach((tbl) => {
-          if (tbl.id === targetId) {
-            tbl.classList.add('active');
-          } else {
-            tbl.classList.remove('active');
-          }
-        });
-      });
-    });
-  </script>
+</table>
+
+<h3>Zrzutki</h3>
+<ol>
+<li>I zrzutka Grzegorz Szczepanik</li>
+<li>II zrzutka Maciej Szeszuła</li>
+<li>III zrzutka 2022 Piotr Grześ</li>
+<li>IV zrzutka 2023 Piotr Grześ</li>
+<li>V zrzutka 2025 Piotr Grześ</li>
+</ol>
+
+<p><strong>Saldo zrzutek na dzień 27.02.2026: 4 210 zł</strong></p>
+
 </body>
 </html>
