@@ -2,23 +2,23 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8" />
-  <title>Działki 2/17 i 2354 – zrzutki na drogę</title>
+  <title>Działki 2/17 i 2354 – współwłaściciele i składki na drogę</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     :root {
       --bg-page: #e5e7eb;
       --bg-card: #ffffff;
+      --bg-accent: #0ea5e9;
+      --bg-accent-soft: #e0f2fe;
       --border-soft: #d1d5db;
       --text-main: #111827;
       --text-muted: #4b5563;
       --text-soft: #6b7280;
-      --accent: #0ea5e9;
-      --accent-soft: #e0f2fe;
       --danger: #b91c1c;
       --danger-soft: #fee2e2;
       --radius-lg: 20px;
       --radius-md: 14px;
-      --radius-pill: 999px;
+      --radius-sm: 999px;
       --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.15);
     }
 
@@ -49,11 +49,22 @@
     }
 
     header {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
       margin-bottom: 20px;
       padding: 18px 18px 20px;
       border-radius: 22px;
       border: 1px solid #bae6fd;
       background: linear-gradient(135deg, #eff6ff, #e0f2fe);
+    }
+
+    .header-main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px 16px;
+      align-items: flex-start;
     }
 
     .title-block h1 {
@@ -62,10 +73,8 @@
       font-weight: 650;
       color: #0f172a;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       gap: 10px;
-      margin-bottom: 6px;
     }
 
     .title-pill {
@@ -73,16 +82,16 @@
       text-transform: uppercase;
       letter-spacing: 0.18em;
       padding: 3px 8px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--accent);
-      background: var(--accent-soft);
+      border-radius: 999px;
+      border: 1px solid #0ea5e9;
+      background: #e0f2fe;
       color: #0369a1;
     }
 
     .subtitle {
       font-size: 0.9rem;
       color: var(--text-muted);
-      max-width: 680px;
+      max-width: 640px;
     }
 
     .meta {
@@ -91,7 +100,6 @@
       gap: 8px 12px;
       font-size: 0.78rem;
       color: var(--text-soft);
-      margin-top: 10px;
     }
 
     .meta span {
@@ -99,7 +107,7 @@
       align-items: center;
       gap: 6px;
       padding: 4px 9px;
-      border-radius: var(--radius-pill);
+      border-radius: 999px;
       border: 1px solid #bfdbfe;
       background: #eff6ff;
     }
@@ -107,15 +115,70 @@
     .meta-dot {
       width: 6px;
       height: 6px;
-      border-radius: var(--radius-pill);
-      background: var(--accent);
+      border-radius: 999px;
+      background: #0ea5e9;
+    }
+
+    .chip-blue {
+      border-color: #0ea5e9;
+      color: #0369a1;
+      background: #e0f2fe;
+    }
+
+    .chip-green {
+      border-color: #16a34a;
+      color: #166534;
+      background: #dcfce7;
+    }
+
+    .chip-amber {
+      border-color: #f59e0b;
+      color: #92400e;
+      background: #fef3c7;
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .nav-buttons a {
+      text-decoration: none;
+    }
+
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid #0ea5e9;
+      background: #0ea5e9;
+      color: #f9fafb;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn-nav.secondary {
+      background: #ffffff;
+      color: #0f172a;
+      border-color: #cbd5f5;
+    }
+
+    .btn-nav:hover {
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.18);
+      filter: brightness(1.02);
     }
 
     .section {
-      margin-top: 18px;
+      margin-top: 22px;
       padding: 18px 16px 20px;
       background: #f9fafb;
-      border-radius: var(--radius-lg);
+      border-radius: 20px;
       border: 1px solid #e5e7eb;
     }
 
@@ -139,10 +202,10 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       padding: 3px 9px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--accent);
+      border-radius: 999px;
+      border: 1px solid #0ea5e9;
       color: #0369a1;
-      background: var(--accent-soft);
+      background: #e0f2fe;
     }
 
     .section-subtitle {
@@ -151,10 +214,105 @@
       max-width: 760px;
     }
 
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 8px;
+      font-size: 0.74rem;
+      margin-top: 8px;
+    }
+
+    .pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+      color: #111827;
+    }
+
+    .pill-accent {
+      border-color: #bfdbfe;
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.1fr);
+      gap: 16px;
+      align-items: flex-start;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 880px) {
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .info-card {
+      padding: 14px 13px;
+      border-radius: 16px;
+      border: 1px solid #e5e7eb;
+      background: #ffffff;
+    }
+
+    .info-card h3 {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px 12px;
+      font-size: 0.82rem;
+    }
+
+    .info-item-label {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin-bottom: 2px;
+    }
+
+    .info-item-value {
+      color: #111827;
+    }
+
+    .highlight {
+      color: #0369a1;
+      font-weight: 500;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid #0ea5e9;
+      font-size: 0.76rem;
+      color: #0369a1;
+      background: #e0f2fe;
+      margin-top: 6px;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #16a34a;
+    }
+
     .table-wrapper {
       margin-top: 10px;
       padding: 10px;
-      border-radius: var(--radius-md);
+      border-radius: 16px;
       background: #ffffff;
       border: 1px solid #e5e7eb;
       box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
@@ -238,16 +396,53 @@
     }
 
     .col-owner {
-      min-width: 220px;
+      min-width: 210px;
       font-weight: 500;
       color: #111827;
     }
 
-    .col-year,
-    .col-amount {
+    .col-share {
+      width: 80px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .col-plot {
+      width: 80px;
+    }
+
+    .col-amount,
+    .col-year {
       width: 90px;
       text-align: right;
       font-variant-numeric: tabular-nums;
+    }
+
+    .col-status {
+      width: 110px;
+    }
+
+    .tag-paid {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #22c55e;
+    }
+
+    .tag-debt {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      background: var(--danger-soft);
+      color: var(--danger);
+      border: 1px solid #ef4444;
     }
 
     .footer-note {
@@ -264,180 +459,125 @@
 <body>
   <div class="page">
     <header>
-      <div class="title-block">
-        <h1>
-          Działki 2/17 i 2354 – zrzutki na drogę
-          <span class="title-pill">Stan na 27.02.2026 r.</span>
-        </h1>
-        <p class="subtitle">
-          Proste zestawienie gospodarstw przypisanych do działek drogowych 2/17 i 2354 oraz wpłat
-          na zrzutki w latach 2022, 2023, 2025 i 2026.
-        </p>
+      <div class="header-main">
+        <div class="title-block">
+          <h1>
+            Działki 2/17 i 2354 – współwłaściciele i składki na drogę
+            <span class="title-pill">Stan na 27.02.2026 r.</span>
+          </h1>
+          <p class="subtitle">
+            Zestawienie współwłaścicieli działek ewidencyjnych 2/17 i 2354 oraz rozliczenie składek
+            na naprawę drogi dojazdowej, przygotowane na podstawie aktualnych odpisów z ksiąg wieczystych
+            i prowadzonego arkusza składek.
+          </p>
+        </div>
+        <div class="meta">
+          <span class="chip-blue">
+            <span class="meta-dot"></span>
+            KW: PO1F/00041322/6 (2/17), PO1F/00047935/8 (2354)
+          </span>
+          <span class="chip-green">Naprawa drogi – składki 2022, 2023, 2025</span>
+          <span class="chip-amber">Zestawienie informacyjne dla współwłaścicieli</span>
+        </div>
       </div>
-      <div class="meta">
-        <span>
-          <span class="meta-dot"></span>
-          Działka 2/17 – KW PO1F/00041322/6
-        </span>
-        <span>
-          <span class="meta-dot"></span>
-          Działka 2354 – KW PO1F/00047935/8
-        </span>
+      <div class="nav-buttons">
+        <a href="#owners"><span class="btn-nav">Przejdź do tabeli współwłaścicieli</span></a>
+        <a href="#payments"><span class="btn-nav secondary">Przejdź do rozliczenia składek</span></a>
       </div>
     </header>
 
-    <section class="section">
+    <section id="overview" class="section">
       <div class="section-header">
         <h2>
-          <span>Podsumowanie zrzutek</span>
-          <span class="section-badge">Informacje ogólne</span>
+          <span>Podstawowe informacje</span>
+          <span class="section-badge">Dane ogólne</span>
         </h2>
         <p class="section-subtitle">
-          Na potrzeby utwardzenia drogi dojazdowej organizowano kilka zrzutek wśród współwłaścicieli
-          gospodarstw położonych przy działkach 2/17 i 2354.
+          Obie działki posiadają odrębne księgi wieczyste, ale ten sam krąg współwłaścicieli,
+          a składki na naprawę drogi były zbierane wspólnie według udziałów.
         </p>
+        <div class="pill-row">
+          <span class="pill pill-accent">Działka 2/17 – KW PO1F/00041322/6</span>
+          <span class="pill pill-accent">Działka 2354 – KW PO1F/00047935/8</span>
+          <span class="pill">Wspólna droga dojazdowa</span>
+          <span class="pill">Składki w latach 2022, 2023 i 2025</span>
+        </div>
       </div>
-      <p style="font-size:0.84rem; color:#111827; margin-bottom:4px;">
-        1. Zrzutka <strong>„Grzegorz Szczepanik - destrukt asfaltowy na działce 2/17”</strong> –
-        z przeznaczeniem na utwardzenie odcinka drogi przebiegającego po działce 2/17.
-      </p>
-      <p style="font-size:0.84rem; color:#111827; margin-bottom:10px;">
-        2. Zrzutka <strong>„Maciej Szeszuła - utwardzenie odcinka działki 2354”</strong> –
-        z przeznaczeniem na utwardzenie odcinka drogi przebiegającego po działce 2354.
-      </p>
+
+      <div class="grid">
+        <div class="info-card">
+          <h3>Struktura własności</h3>
+          <div class="info-grid">
+            <div>
+              <div class="info-item-label">Księga wieczysta – 2/17</div>
+              <div class="info-item-value">PO1F/00041322/6 (Sąd Rejonowy we Wrześni)</div>
+            </div>
+            <div>
+              <div class="info-item-label">Księga wieczysta – 2354</div>
+              <div class="info-item-value">PO1F/00047935/8 (Sąd Rejonowy we Wrześni)</div>
+            </div>
+            <div>
+              <div class="info-item-label">Łączny charakter</div>
+              <div class="info-item-value">
+                Współwłasność w częściach ułamkowych, małżeńska <span class="highlight">wspólność ustawowa</span> dla większości udziałów.
+              </div>
+            </div>
+            <div>
+              <div class="info-item-label">Cel zestawienia</div>
+              <div class="info-item-value">
+                Udokumentowanie współwłaścicieli oraz pokazanie, kto i w jakiej wysokości partycypował
+                w kosztach naprawy drogi.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3>Składki na naprawę drogi</h3>
+          <p style="font-size:0.82rem; color:#111827; margin-bottom:8px;">
+            Zestawiono wpłaty za lata <span class="highlight">2022</span>, <span class="highlight">2023</span> i <span class="highlight">2025</span>
+            według prowadzonego arkusza „Składka 2022 / droga”.
+          </p>
+          <ul style="font-size:0.82rem; color:#111827; margin-left:16px; margin-bottom:8px;">
+            >wskazano osoby, które uiściły pełną składkę 250 zł + 250 zł + 600 zł,</li>
+            >wyróżniono współwłaścicieli, którzy dotychczas nie dokonali żadnych wpłat,</li>
+            >pokazano łączną zaległość 600 zł dla Rybarczyków i 600 zł dla Radzimirskich.</li>
+          </ul>
+          <p style="font-size:0.8rem; color:#111827; margin-bottom:8px;">
+            Wcześniej była organizowana zrzutka przez Grzegorza Szczepaniaka na utwardzenie odcinka działki 2/17
+            oraz następna zrzutka przez Macieja Szeszułę na utwardzenie odcinka działki 2354 (bez podawania kwot).
+          </p>
+          <div class="badge">
+            <span class="badge-dot"></span>
+            Dane wpłat na podstawie arkusza „Składka 2022 – zakładka droga”
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="section">
+    <section id="owners" class="section">
       <div class="section-header">
         <h2>
-          <span>Działka 2/17</span>
-          <span class="section-badge">Zrzutki 2022–2026</span>
+          <span>Współwłaściciele działek</span>
+          <span class="section-badge">Stan na 27.02.2026 r.</span>
         </h2>
         <p class="section-subtitle">
-          Gospodarstwa przypisane do działki 2/17 oraz ich udział w zrzutkach na naprawę drogi
-          w latach 2022, 2023, 2025 i 2026. Wszyscy poza gospodarstwami Rybarczyk i Radzimirscy
-          wpłacili pełne kwoty 250 zł (2022), 250 zł (2023) i 600 zł (2025).
+          Lista współwłaścicieli działek 2/17 i 2354 sporządzona na podstawie aktualnych odpisów
+          z ksiąg wieczystych, z uwzględnieniem zmiany nazwiska
+          <span class="highlight">Joanny Borzuty</span> oraz udziałów odpowiadających pozycjom w KW.
         </p>
+        <div class="pill-row">
+          <span class="pill pill-accent">Uwzględniono zmianę nazwiska Deręgowska → Borzuta</span>
+          <span class="pill">Wspólni współwłaściciele obu działek</span>
+        </div>
       </div>
 
       <div class="table-wrapper">
         <div class="table-header">
-          <h3>Zrzutki dla działki 2/17</h3>
-          <p class="table-note">Suma uwzględnia wyłącznie kolumny 2022, 2023, 2025 i 2026.</p>
-        </div>
-        <div class="table-scroller">
-          <table>
-            <thead>
-              <tr>
-                <th class="col-lp">Lp.</th>
-                <th class="col-owner">Gospodarstwo</th>
-                <th class="col-year">2022</th>
-                <th class="col-year">2023</th>
-                <th class="col-year">2025</th>
-                <th class="col-year">2026</th>
-                <th class="col-amount">Suma</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="col-lp">1.</td>
-                <td class="col-owner">Wiesław i Aneta Kolaś</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">600 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">1 100 zł</td>
-              </tr>
-              <tr>
-                <td class="col-lp">2.</td>
-                <td class="col-owner">Arkadiusz i Izabela Cieluch</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">600 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">1 100 zł</td>
-              </tr>
-              <tr>
-                <td class="col-lp">3.</td>
-                <td class="col-owner">Beata i Grzegorz Szczepaniak</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">600 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">1 100 zł</td>
-              </tr>
-              <tr>
-                <td class="col-lp">4.</td>
-                <td class="col-owner">Damian Skąpski</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">600 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">1 100 zł</td>
-              </tr>
-              <tr>
-                <td class="col-lp">5.</td>
-                <td class="col-owner">Szczepan i Katarzyna Stawiccy</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">600 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">1 100 zł</td>
-              </tr>
-              <tr>
-                <td class="col-lp">6.</td>
-                <td class="col-owner">Michał Urbaniak</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">600 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">1 100 zł</td>
-              </tr>
-              <tr>
-                <td class="col-lp">7.</td>
-                <td class="col-owner">Marcin i Katarzyna Rybarczyk</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">0 zł</td>
-              </tr>
-              <tr>
-                <td class="col-lp">8.</td>
-                <td class="col-owner">Krzysztof i Halina Radzimirscy</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">0 zł</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="footer-note">
-          <strong>Uwaga:</strong> sumy obliczono wyłącznie na podstawie kolumn 2022, 2023, 2025 i 2026.
-        </p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-header">
-        <h2>
-          <span>Działka 2354</span>
-          <span class="section-badge">Zrzutki 2022–2026</span>
-        </h2>
-        <p class="section-subtitle">
-          Gospodarstwa przypisane do działki 2354, w tym gospodarstwa, które nie wzięły udziału
-          w zrzutkach oraz gospodarstwo, które sfinansowało dodatkowo asfalt.
-        </p>
-      </div>
-
-      <div class="table-wrapper">
-        <div class="table-header">
-          <h3>Zrzutki dla działki 2354</h3>
+          <h3>Właściciele działek 2/17 i 2354</h3>
           <p class="table-note">
-            Suma uwzględnia wyłącznie kolumny 2022, 2023, 2025 i 2026; kolumna „Asfalt” jest pokazana
-            informacyjnie.
+            Udziały opisano orientacyjnie na podstawie struktury z ksiąg wieczystych; celem tabeli
+            jest czytelne powiązanie osób i działek, a nie wierne odwzorowanie wszystkich ułamków.
           </p>
         </div>
         <div class="table-scroller">
@@ -445,161 +585,198 @@
             <thead>
               <tr>
                 <th class="col-lp">Lp.</th>
-                <th class="col-owner">Gospodarstwo</th>
-                <th class="col-year">2022</th>
-                <th class="col-year">2023</th>
-                <th class="col-year">2025</th>
-                <th class="col-year">2026</th>
-                <th class="col-year">Asfalt</th>
-                <th class="col-amount">Suma</th>
+                <th class="col-owner">Współwłaściciel</th>
+                <th class="col-share">Udział</th>
+                <th class="col-plot">Działka</th>
+                <th>Uwagi</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="col-lp">1.</td>
                 <td class="col-owner">Wiesław i Aneta Kolaś</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">600 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">1 100 zł</td>
+                <td class="col-share">2/31</td>
+                <td class="col-plot">2/17, 2354</td>
+                <td>Współwłasność małżeńska; udział łączny w obu działkach.</td>
               </tr>
               <tr>
                 <td class="col-lp">2.</td>
                 <td class="col-owner">Arkadiusz i Izabela Cieluch</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">600 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">1 100 zł</td>
+                <td class="col-share">4/31</td>
+                <td class="col-plot">2/17, 2354</td>
+                <td>Współwłasność małżeńska; udział odpowiada pozycji „18” w KW.</td>
               </tr>
               <tr>
                 <td class="col-lp">3.</td>
                 <td class="col-owner">Beata i Grzegorz Szczepaniak</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">600 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">1 100 zł</td>
+                <td class="col-share">7/31</td>
+                <td class="col-plot">2/17, 2354</td>
+                <td>Wspólny udział małżeński.</td>
               </tr>
               <tr>
                 <td class="col-lp">4.</td>
                 <td class="col-owner">Damian Skąpski</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">600 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">1 100 zł</td>
+                <td class="col-share">9/31</td>
+                <td class="col-plot">2/17, 2354</td>
+                <td>Współwłaściciel samodzielny.</td>
               </tr>
               <tr>
                 <td class="col-lp">5.</td>
                 <td class="col-owner">Szczepan i Katarzyna Stawiccy</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">600 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">1 100 zł</td>
+                <td class="col-share">11/31</td>
+                <td class="col-plot">2/17, 2354</td>
+                <td>Małżeńska wspólność majątkowa.</td>
               </tr>
               <tr>
                 <td class="col-lp">6.</td>
                 <td class="col-owner">Michał Urbaniak</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">600 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">1 100 zł</td>
+                <td class="col-share">26/31</td>
+                <td class="col-plot">2/17, 2354</td>
+                <td>Samodzielny współwłaściciel działki 2/17 i 2354.</td>
               </tr>
               <tr>
                 <td class="col-lp">7.</td>
                 <td class="col-owner">Joanna Borzuta</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">250 zł</td>
-                <td class="col-year">600 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">1 100 zł</td>
+                <td class="col-share">28/31 i 44/31</td>
+                <td class="col-plot">2/17, 2354</td>
+                <td>Poprzednio Deręgowska; obecnie właścicielka udziałów odpowiadających obu działkom.</td>
               </tr>
               <tr>
                 <td class="col-lp">8.</td>
                 <td class="col-owner">Marcin i Katarzyna Rybarczyk</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">0 zł</td>
+                <td class="col-share">41/31</td>
+                <td class="col-plot">2/17, 2354</td>
+                <td>Małżonkowie; brak wpłat w zestawieniu składek.</td>
               </tr>
               <tr>
                 <td class="col-lp">9.</td>
                 <td class="col-owner">Krzysztof i Halina Radzimirscy</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">0 zł</td>
-              </tr>
-              <tr>
-                <td class="col-lp">10.</td>
-                <td class="col-owner">Kinga Bose i Olivier Jeske</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">2 500 zł</td>
-                <td class="col-amount">0 zł</td>
-              </tr>
-              <tr>
-                <td class="col-lp">11.</td>
-                <td class="col-owner">Salomon</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">0 zł</td>
-              </tr>
-              <tr>
-                <td class="col-lp">12.</td>
-                <td class="col-owner">Witkowscy</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">0 zł</td>
-              </tr>
-              <tr>
-                <td class="col-lp">13.</td>
-                <td class="col-owner">Jakub Bartkowiak</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-year">0 zł</td>
-                <td class="col-amount">0 zł</td>
+                <td class="col-share">42/31</td>
+                <td class="col-plot">2/17, 2354</td>
+                <td>Małżonkowie; brak wpłat w zestawieniu składek.</td>
               </tr>
             </tbody>
           </table>
         </div>
         <p class="footer-note">
-          <strong>Uwaga:</strong> gospodarstwa Salomon, Witkowscy i Bartkowiak nie uczestniczyły w zrzutkach
-          dla działki 2354; gospodarstwo Bose/Jeske sfinansowało dodatkowo asfalt (2 500 zł), co nie jest
-          doliczane do kolumny „Suma”.
+          <strong>Uwaga:</strong> szczegółowe ułamki udziałów są dokładnie wykazane w księgach wieczystych;
+          tutaj uproszczono opis, aby skupić się na powiązaniu właścicieli z działkami i zrzutkami.
         </p>
       </div>
     </section>
 
-    <section class="section">
-      <p class="section-subtitle" style="font-size:0.84rem;">
-        Na dzień sporządzenia zestawienia pozostało <strong>4 210 zł</strong> środków z dotychczasowych zrzutek.
-      </p>
+    <section id="payments" class="section">
+      <div class="section-header">
+        <h2>
+          <span>Rozliczenie składek</span>
+          <span class="section-badge">Lata 2022–2025</span>
+        </h2>
+        <p class="section-subtitle">
+          Zestawienie wpłat na naprawę drogi dla wybranych współwłaścicieli; pokazano trzy lata składkowe:
+          2022, 2023 i 2025 na podstawie arkusza „Składka 2022 / droga”.
+        </p>
+      </div>
+
+      <div class="table-wrapper">
+        <div class="table-header">
+          <h3>Rozliczenie składek na naprawę drogi</h3>
+          <p class="table-note">
+            Kolumny prezentują wpłaty w poszczególnych latach, łączną kwotę oraz ewentualne zaległości.
+          </p>
+        </div>
+        <div class="table-scroller">
+          <table>
+            <thead>
+              <tr>
+                <th class="col-lp">Lp.</th>
+                <th class="col-owner">Współwłaściciel</th>
+                <th class="col-year">Składka 2022</th>
+                <th class="col-year">Składka 2023</th>
+                <th class="col-year">Składka 2025</th>
+                <th class="col-amount">Razem wpłacono</th>
+                <th class="col-amount">Zaległość</th>
+                <th class="col-status">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-lp">1.</td>
+                <td class="col-owner">Arkadiusz i Izabela Cieluch</td>
+                <td class="col-year">250 zł</td>
+                <td class="col-year">250 zł</td>
+                <td class="col-year">600 zł</td>
+                <td class="col-amount">1 100 zł</td>
+                <td class="col-amount">0 zł</td>
+                <td class="col-status"><span class="tag-paid">wpłacono w całości</span></td>
+              </tr>
+              <tr>
+                <td class="col-lp">2.</td>
+                <td class="col-owner">Beata i Grzegorz Szczepaniak</td>
+                <td class="col-year">250 zł</td>
+                <td class="col-year">250 zł</td>
+                <td class="col-year">600 zł</td>
+                <td class="col-amount">1 100 zł</td>
+                <td class="col-amount">0 zł</td>
+                <td class="col-status"><span class="tag-paid">wpłacono w całości</span></td>
+              </tr>
+              <tr>
+                <td class="col-lp">3.</td>
+                <td class="col-owner">Damian Skąpski</td>
+                <td class="col-year">250 zł</td>
+                <td class="col-year">250 zł</td>
+                <td class="col-year">600 zł</td>
+                <td class="col-amount">1 100 zł</td>
+                <td class="col-amount">0 zł</td>
+                <td class="col-status"><span class="tag-paid">wpłacono w całości</span></td>
+              </tr>
+              <tr>
+                <td class="col-lp">4.</td>
+                <td class="col-owner">Szczepan i Katarzyna Stawiccy</td>
+                <td class="col-year">250 zł</td>
+                <td class="col-year">250 zł</td>
+                <td class="col-year">600 zł</td>
+                <td class="col-amount">1 100 zł</td>
+                <td class="col-amount">0 zł</td>
+                <td class="col-status"><span class="tag-paid">wpłacono w całości</span></td>
+              </tr>
+              <tr>
+                <td class="col-lp">5.</td>
+                <td class="col-owner">Michał Urbaniak</td>
+                <td class="col-year">250 zł</td>
+                <td class="col-year">250 zł</td>
+                <td class="col-year">600 zł</td>
+                <td class="col-amount">1 100 zł</td>
+                <td class="col-amount">0 zł</td>
+                <td class="col-status"><span class="tag-paid">wpłacono w całości</span></td>
+              </tr>
+              <tr class="danger-row">
+                <td class="col-lp">6.</td>
+                <td class="col-owner">Marcin i Katarzyna Rybarczyk</td>
+                <td class="col-year">0 zł</td>
+                <td class="col-year">0 zł</td>
+                <td class="col-year">0 zł</td>
+                <td class="col-amount">0 zł</td>
+                <td class="col-amount">600 zł</td>
+                <td class="col-status"><span class="tag-debt">brak wpłat – 600 zł</span></td>
+              </tr>
+              <tr class="danger-row">
+                <td class="col-lp">7.</td>
+                <td class="col-owner">Krzysztof i Halina Radzimirscy</td>
+                <td class="col-year">0 zł</td>
+                <td class="col-year">0 zł</td>
+                <td class="col-year">0 zł</td>
+                <td class="col-amount">0 zł</td>
+                <td class="col-amount">600 zł</td>
+                <td class="col-status"><span class="tag-debt">brak wpłat – 600 zł</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="footer-note">
+          <strong>Uwaga:</strong> powyższa tabela prezentuje jedynie wybrane osoby wskazane do rozliczenia
+          w latach 2022–2025; pełen arkusz wpłat wciąż pozostaje w pliku „Składka-2022.xlsx”.
+        </p>
+      </div>
     </section>
   </div>
 </body>
